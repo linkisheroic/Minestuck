@@ -1,5 +1,9 @@
 package com.mraof.minestuck.item;
 
+import com.mraof.minestuck.block.BlockAspectLog;
+import com.mraof.minestuck.block.BlockAspectLog2;
+import com.mraof.minestuck.block.BlockAspectLog3;
+import com.mraof.minestuck.block.BlockAspectSapling;
 import com.mraof.minestuck.block.BlockColoredDirt;
 import com.mraof.minestuck.block.BlockCrockerMachine;
 import com.mraof.minestuck.block.BlockMinestuckLeaves;
@@ -37,11 +41,6 @@ import static com.mraof.minestuck.block.MinestuckBlocks.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.mraof.minestuck.block.BlockAspectLog;
-import com.mraof.minestuck.block.BlockAspectLog2;
-import com.mraof.minestuck.block.BlockAspectLog3;
-import com.mraof.minestuck.block.BlockAspectSapling;
 
 public class MinestuckItems
 {
