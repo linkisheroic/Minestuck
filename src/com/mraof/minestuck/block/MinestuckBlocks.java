@@ -37,7 +37,7 @@ public class MinestuckBlocks
 	public static Block sburbMachine = new BlockSburbMachine();
 	public static Block crockerMachine = new BlockCrockerMachine();
 	public static Block blockComputerOff = new BlockComputerOff();
-	public static Block blockComputerOn = new BlockComputerOn
+	public static Block blockComputerOn = new BlockComputerOn();
 	public static Block blockLaptopOff = new BlockVanityLaptopOff();
 	public static Block blockLaptopOn = new BlockVanityLaptopOn();
 	public static Block transportalizer = new BlockTransportalizer();
@@ -176,13 +176,13 @@ public class MinestuckBlocks
 		registry.register(sugarCube.setRegistryName("sugar_cube"));
 		
 		registry.register(log.setRegistryName("log"));
-		registry.register(leaves1.setRegistryName("leaves");
-		registry.register(planks.setRegistryName("planks");
-		registry.register(aspectSapling.setRegistryName("aspect_sapling");
-		registry.register(rainbowSapling.setRegistryName("rainbow_sapling");
-		registry.register(aspectLog1.setRegistryName("aspect_log_1");
-		registry.register(aspectLog2.setRegistryName("aspect_log_2");
-		registry.register(aspectLog3.setRegistryName("aspect_log_3");
+		registry.register(leaves1.setRegistryName("leaves"));
+		registry.register(planks.setRegistryName("planks"));
+		registry.register(aspectSapling.setRegistryName("aspect_sapling"));
+		registry.register(rainbowSapling.setRegistryName("rainbow_sapling"));
+		registry.register(aspectLog1.setRegistryName("aspect_log_1"));
+		registry.register(aspectLog2.setRegistryName("aspect_log_2"));
+		registry.register(aspectLog3.setRegistryName("aspect_log_3"));
 		registry.register(glowingLog.setRegistryName("glowing_log"));
 		registry.register(glowingPlanks.setRegistryName("glowing_planks"));
 		registry.register(glowingMushroom.setRegistryName("glowing_mushroom"));
