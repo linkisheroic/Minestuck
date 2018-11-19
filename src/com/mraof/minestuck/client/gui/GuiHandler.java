@@ -70,7 +70,7 @@ public class GuiHandler implements IGuiHandler
 			return new GuiTransportalizer(Minecraft.getMinecraft(), (TileEntityTransportalizer) tileEntity);
 		
 		if(id == GuiId.COLOR.ordinal())
-			return new GuiColorSelector(false);
+			return new GuiColorSelector(Minecraft.getMinecraft(), false);
 		
 		if(id == GuiId.MERCHANT.ordinal())
 			return new GuiConsortShop(player);

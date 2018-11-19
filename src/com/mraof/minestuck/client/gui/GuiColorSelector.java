@@ -3,9 +3,13 @@ package com.mraof.minestuck.client.gui;
 import com.mraof.minestuck.network.MinestuckChannelHandler;
 import com.mraof.minestuck.network.MinestuckPacket;
 import com.mraof.minestuck.network.SelectionPacket;
+import com.mraof.minestuck.network.TransportalizerPacket;
 import com.mraof.minestuck.util.ColorCollector;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
@@ -22,17 +26,25 @@ public class GuiColorSelector extends GuiScreen
 	private static final int guiWidth = 176, guiHeight = 157;
 	private int selectedColor;
 	private boolean firstTime;
+	private GuiTextField destinationTextField;
 	
-	public GuiColorSelector(boolean firstTime)
+	public GuiColorSelector(Minecraft minecraft, boolean firstTime)
 	{
 		this.firstTime = firstTime;
 		selectedColor = ColorCollector.playerColor;
+		this.fontRenderer = minecraft.fontRenderer;
 	}
 	
 	@Override
 	public void initGui()
 	{
-		GuiButton button = new GuiButton(0, (width - guiWidth)/2 + 50, (height - guiHeight)/2 + 132, 76, 20, "Choose");
+		int yOffset = (this.height - 10) - (guiHeight - 10);
+		this.destinationTextField = new GuiTextField(0, this.fontRenderer, (width - guiWidth)/2 + 31, (height - guiHeight)/2 + 130, 45, 20);
+		this.destinationTextField.setMaxStringLength(6);
+		this.destinationTextField.setFocused(false);
+		this.destinationTextField.setText(String.valueOf(ColorCollector.getColor(selectedColor)));
+		
+		GuiButton button = new GuiButton(0, (width + guiWidth)/2 - 84, (height - guiHeight)/2 + 130, 60, 20, "Choose");
 		buttonList.add(button);
 	}
 	
@@ -73,6 +85,7 @@ public class GuiColorSelector extends GuiScreen
 				drawRect(xOffset + x, yOffset + y, xOffset + x + 32, yOffset + y + 16, color);
 			}
 		
+		this.destinationTextField.drawTextBox();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		
 		if(selectedColor != -1)
@@ -93,6 +106,8 @@ public class GuiColorSelector extends GuiScreen
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		super.mouseClicked(mouseX, mouseY, mouseButton);
+		this.destinationTextField.mouseClicked(mouseX, mouseY, mouseButton);
+		
 		if(mouseButton == 0)
 		{
 			int xOffset = (width - guiWidth)/2;
@@ -114,12 +129,32 @@ public class GuiColorSelector extends GuiScreen
 						return;
 					}
 				}
+			
 		}
+	}
+	
+	@Override
+	protected void keyTyped(char character, int key) throws IOException
+	{
+		super.keyTyped(character, key);
+		this.destinationTextField.textboxKeyTyped(character, key);
+		//this.doneBtn.enabled = this.commandTextField.getText().trim().length() > 0;
+
+		//this.actionPerformed(this.doneBtn);
 	}
 	
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
+		/* This is for when the player inputs text in the field and then hits the button. Needs functionality and edits to MinestuckPacket, SelectionPacket.
+		if(button.id == 0 && this.destinationTextField.getText().length() == 6)
+		{
+			MinestuckChannelHandler.sendToServer(MinestuckPacket.makePacket(MinestuckPacket.Type.SELECTION, SelectionPacket.COLOR, this.selectedColor));
+			ColorCollector.playerColor = selectedColor;
+			this.mc.displayGuiScreen(null);
+		}
+		*/
+		
 		MinestuckChannelHandler.sendToServer(MinestuckPacket.makePacket(MinestuckPacket.Type.SELECTION, SelectionPacket.COLOR, this.selectedColor));
 		ColorCollector.playerColor = selectedColor;
 		this.mc.displayGuiScreen(null);
