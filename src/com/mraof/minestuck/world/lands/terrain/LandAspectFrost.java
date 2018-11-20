@@ -1,6 +1,5 @@
 package com.mraof.minestuck.world.lands.terrain;
 
-import com.mraof.minestuck.block.BlockMinestuckLog1;
 import com.mraof.minestuck.block.BlockMinestuckStone;
 import com.mraof.minestuck.block.MinestuckBlocks;
 import com.mraof.minestuck.entity.consort.EnumConsort;
@@ -56,9 +55,8 @@ public class LandAspectFrost extends TerrainLandAspect
 		ArrayList<ILandDecorator> list = new ArrayList<ILandDecorator>();
 		list.add(new IceDecorator());
 		list.add(new LayeredBlockDecorator(Blocks.SNOW_LAYER, true));
-		//list.add(new SpruceTreeDecorator(BiomeMinestuck.mediumNormal));
-		//list.add(new SpruceTreeDecorator(BiomeMinestuck.mediumRough));
-
+//		list.add(new SpruceTreeDecorator());
+		
 		list.add(new SurfaceDecoratorVein(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT), 10, 32, BiomeMinestuck.mediumRough, BiomeMinestuck.mediumOcean));
 		list.add(new SurfaceDecoratorVein(Blocks.ICE.getDefaultState(), 5, 8, BiomeMinestuck.mediumRough));
 		list.add(new SurfaceDecoratorVein(Blocks.SNOW.getDefaultState(), 8, 16, BiomeMinestuck.mediumRough));

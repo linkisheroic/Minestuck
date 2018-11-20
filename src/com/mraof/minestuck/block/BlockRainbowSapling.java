@@ -9,7 +9,6 @@ import com.mraof.minestuck.world.gen.feature.WorldGenRainbowTree;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -41,7 +40,6 @@ public class BlockRainbowSapling extends BlockBush implements IGrowable
 		this.setDefaultState(this.blockState.getBaseState().withProperty(GROWN_SOME, false).withProperty(RED, false).withProperty(GREEN, false).withProperty(BLUE, false));
 		this.setCreativeTab(TabMinestuck.instance);
 		this.setUnlocalizedName("rainbowSapling");
-		this.setSoundType(SoundType.PLANT);
 	}
 	
 	/*
