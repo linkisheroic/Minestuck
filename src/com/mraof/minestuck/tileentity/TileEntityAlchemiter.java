@@ -14,6 +14,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -29,6 +30,10 @@ public class TileEntityAlchemiter extends TileEntity
 	private GristType selectedGrist = GristType.Build;
 	private boolean broken = false;
 	private ItemStack dowel = ItemStack.EMPTY;
+	private ItemStack upgradeItem[] = {ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
+	private Item upgradeCheck[] = new Item[7];
+	public boolean upgraded = false;
+	private TileEntity jbe = null;
 	
 	public void setDowel(ItemStack newDowel)
 	{
@@ -52,6 +57,7 @@ public class TileEntityAlchemiter extends TileEntity
 	{
 		if (!AlchemyRecipes.hasDecodedItem(dowel))
 			return new ItemStack(MinestuckBlocks.genericObject);
+		else if(checkUpgrade(MinestuckItems.captchaCard)) return AlchemyRecipes.createEncodedItem(AlchemyRecipes.getDecodedItem(dowel), true);
 		else return AlchemyRecipes.getDecodedItem(dowel);
 	}
 	
@@ -90,6 +96,77 @@ public class TileEntityAlchemiter extends TileEntity
 		setDowel(ItemStack.EMPTY);
 	}
 	
+	//JBE upgrades
+	public void setUpgraded(boolean bool, BlockPos pos)
+	{
+		
+		TileEntity te = world.getTileEntity(pos);
+		
+		if(te instanceof TileEntityJumperBlock)
+			jbe = te;
+		else
+		{
+			Debug.warnf("%s is not a jbe tile entity", te);
+			return;
+		}
+		
+		TileEntityJumperBlock jbeTe = (TileEntityJumperBlock) te;
+		upgraded = bool;
+		
+		if(bool == true)
+		{
+			for(int i = 0; i < upgradeItem.length; i++)
+			{
+				upgradeItem[i] = jbeTe.getUpgrade(i);
+			}
+		}
+		else
+		{
+			for(int i = 0; i < upgradeItem.length; i++)
+			{
+				upgradeItem[i] = ItemStack.EMPTY;
+			}
+		}
+		
+		refreshUpgrades();
+	}
+	
+	//TODO
+	public void refreshUpgrades()
+	{
+		Item item = null;
+		for(int i = 0; i < upgradeCheck.length; i++)
+		{
+			upgradeCheck[i] = null;
+		}
+		for(int i = 0; i < upgradeItem.length; i++)
+		{
+			for(int c = 0; c < upgradeCheck.length; c++)
+			{
+				if(upgradeCheck[c] == upgradeItem[i].getItem()) break;
+				if(upgradeCheck[c] == null)
+					{
+					upgradeCheck[c] = upgradeItem[i].getItem();
+						break;
+					}
+			}
+		}
+	}
+	
+	public boolean checkUpgrade(Item itemToCheck)
+	{
+		for(int i = 0; i < upgradeCheck.length; i++)
+		{
+			if(upgradeCheck[i] == itemToCheck) return true;
+		}
+		return false;
+	}
+	
+	public boolean isUpgraded()
+	{
+		return upgraded;
+	}
+	
 	private boolean isUseable(IBlockState state)
 	{
 		if(!broken)
@@ -101,8 +178,22 @@ public class TileEntityAlchemiter extends TileEntity
 		return !broken;
 	}
 	
+	public ItemStack getUpgrade(int id)
+	{
+		return upgradeItem[id];
+	}
+	
 	public void checkStates()
 	{
+		if(isUpgraded())
+		{
+			for(int i = 0; i < upgradeItem.length; i++)
+			{
+				System.out.println(getUpgrade(i));
+			}
+		}
+		else System.out.println("no upgrades were found");
+		
 		if(this.broken)
 			return;
 		
@@ -127,6 +218,7 @@ public class TileEntityAlchemiter extends TileEntity
 				!world.getBlockState(pos.offset(facing, 2)).equals(BlockAlchemiter.getBlockState(EnumParts.SIDE_LEFT, facing.rotateY())) ||
 				!world.getBlockState(pos.offset(facing)).equals(BlockAlchemiter.getBlockState(EnumParts.SIDE_RIGHT, facing.rotateY())) ||
 				!world.getBlockState(pos.offset(facing, 2).offset(facing.rotateY(), 1)).equals(BlockAlchemiter.getBlockState(EnumParts.CENTER_PAD, facing.rotateY())))
+			
 		{
 			breakMachine();
 			return;
