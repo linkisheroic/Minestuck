@@ -1,7 +1,6 @@
 package com.mraof.minestuck.alchemy;
 
 import com.mraof.minestuck.block.BlockMinestuckStone;
-import com.mraof.minestuck.block.MinestuckBlocks;
 import com.mraof.minestuck.item.ItemCruxiteArtifact;
 import com.mraof.minestuck.item.MinestuckItems;
 import com.mraof.minestuck.modSupport.*;
@@ -482,6 +481,7 @@ public class AlchemyRecipes
 		CombinationRegistry.addCombination(new ItemStack(Items.GUNPOWDER), new ItemStack(Blocks.WOODEN_BUTTON), MODE_OR, new ItemStack(Blocks.REDSTONE_TORCH));
 		CombinationRegistry.addCombination(new ItemStack(Items.GUNPOWDER), new ItemStack(Blocks.WOODEN_PRESSURE_PLATE), MODE_OR, new ItemStack(Blocks.REDSTONE_TORCH));
 		CombinationRegistry.addCombination(new ItemStack(Blocks.GRAVEL), new ItemStack(Items.DYE, 1, EnumDyeColor.RED.getDyeDamage()), MODE_AND, new ItemStack(Items.REDSTONE));
+		CombinationRegistry.addCombination(new ItemStack(Blocks.PUMPKIN), new ItemStack(strawberry), MODE_OR, new ItemStack(Blocks.MELON_BLOCK));
 		CombinationRegistry.addCombination(new ItemStack(Blocks.MELON_BLOCK), new ItemStack(Items.CARROT), MODE_AND, new ItemStack(Blocks.PUMPKIN));
 		CombinationRegistry.addCombination(new ItemStack(Items.SKULL, 1, 1), new ItemStack(Items.BONE), MODE_AND, new ItemStack(Items.SKULL, 1, 0));
 		CombinationRegistry.addCombination(new ItemStack(Items.SKULL, 1, 1), new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), MODE_AND, new ItemStack(Items.SKULL, 1, 0));
@@ -565,8 +565,6 @@ public class AlchemyRecipes
 		GristRegistry.addGristConversion(new ItemStack(pogoCane), false, new GristSet(new GristType[] {GristType.Build, GristType.Shale}, new int[] {18, 14}));
 		GristRegistry.addGristConversion(new ItemStack(upStick), false, new GristSet(new GristType[] {GristType.Uranium}, new int[] {1}));
 		
-		
-		GristRegistry.addGristConversion(new ItemStack(captcharoidCamera), false, new GristSet(new GristType[] {GristType.Build, GristType.Caulk, GristType.Gold, GristType.Marble, GristType.Mercury, GristType.Shale}, new int[] {5000, 500, 500, 500, 500, 500}));
 		GristRegistry.addGristConversion(new ItemStack(transportalizer), false, new GristSet(new GristType[] {GristType.Build, GristType.Amethyst, GristType.Rust, GristType.Uranium}, new int[] {350, 27, 36, 18}));
 		GristRegistry.addGristConversion(new ItemStack(modusCard, 1, 2), true, new GristSet(GristType.Build, 140));
 		GristRegistry.addGristConversion(new ItemStack(modusCard, 1, 3), true, new GristSet(new GristType[] {GristType.Build, GristType.Amber}, new int[] {400, 35}));
@@ -584,7 +582,6 @@ public class AlchemyRecipes
 		GristRegistry.addGristConversion(new ItemStack(glowingMushroom), new GristSet(new GristType[] {GristType.Build, GristType.Shale, GristType.Mercury}, new int[] {5, 3, 2}));
 		GristRegistry.addGristConversion(new ItemStack(glowingLog), new GristSet(new GristType[] {GristType.Build, GristType.Amber, GristType.Mercury}, new int[] {8, 4, 4}));
 		GristRegistry.addGristConversion(new ItemStack(glowingPlanks), new GristSet(new GristType[] {GristType.Build, GristType.Amber, GristType.Mercury}, new int[] {2, 1, 1}));
-		GristRegistry.addGristConversion(new ItemStack(petrifiedPoppy), new GristSet(new GristType[] {GristType.Build, GristType.Iodine}, new int[] {1, 1}));
 		GristRegistry.addGristConversion(new ItemStack(goldSeeds), new GristSet(GristType.Gold, 3));
 		GristRegistry.addGristConversion(new ItemStack(emeraldSword), false, new GristSet(new GristType[] {GristType.Quartz, GristType.Diamond, GristType.Ruby}, new int[] {44, 76, 72}));
 		GristRegistry.addGristConversion(new ItemStack(emeraldAxe), false, new GristSet(new GristType[] {GristType.Amber, GristType.Diamond, GristType.Ruby}, new int[] {40, 73, 70}));
@@ -627,6 +624,7 @@ public class AlchemyRecipes
 		GristRegistry.addGristConversion(new ItemStack(onion), new GristSet(new GristType[] {GristType.Iodine}, new int[] {3}));
 		GristRegistry.addGristConversion(new ItemStack(irradiatedSteak), false, new GristSet(new GristType[] {GristType.Iodine, GristType.Uranium}, new int[] {12, 1}));
 		GristRegistry.addGristConversion(new ItemStack(rockCookie), false, new GristSet(new GristType[] {GristType.Build, GristType.Marble}, new int[] {10, 5}));
+		GristRegistry.addGristConversion(new ItemStack(strawberryChunk), new GristSet(new GristType[] {GristType.Amber, GristType.Build, GristType.Ruby}, new int[] {2, 1, 2}));
 		
 		GristRegistry.addGristConversion(primedTnt, new GristSet(new GristType[] {GristType.Build, GristType.Chalk, GristType.Sulfur}, new int[] {8, 10, 14}));
 		GristRegistry.addGristConversion(unstableTnt, new GristSet(new GristType[] {GristType.Build, GristType.Chalk, GristType.Sulfur}, new int[] {5, 11, 15}));
@@ -648,6 +646,8 @@ public class AlchemyRecipes
 		GristRegistry.addGristConversion(new ItemStack(log, 1, 1), new GristSet(new GristType[] {GristType.Build, GristType.Iodine}, new int[] {7, 1}));
 		GristRegistry.addGristConversion(new ItemStack(log, 1, 2), new GristSet(new GristType[] {GristType.Build, GristType.Cobalt}, new int[] {7, 1}));
 		GristRegistry.addGristConversion(new ItemStack(log, 1, 3), new GristSet(new GristType[] {GristType.Build}, new int[] {8}));
+		GristRegistry.addGristConversion(new ItemStack(floweryMossBrick), new GristSet(new GristType[] {GristType.Amber, GristType.Build, GristType.Iodine}, new int[] {1, 7, 1}));
+		GristRegistry.addGristConversion(new ItemStack(floweryMossStone), new GristSet(new GristType[] {GristType.Amber, GristType.Build, GristType.Iodine}, new int[] {1, 7, 1}));
 		GristRegistry.addGristConversion(endLog, new GristSet(new GristType[] {GristType.Build}, new int[] {8}));
 		GristRegistry.addGristConversion(treatedPlanks, new GristSet(new GristType[] {GristType.Build}, new int[] {2}));
 		GristRegistry.addGristConversion(new ItemStack(leaves1), false, new GristSet(GristType.Build, 1));
@@ -667,13 +667,6 @@ public class AlchemyRecipes
 		GristRegistry.addGristConversion(new ItemStack(hotCake), new GristSet(new GristType[] {GristType.Sulfur, GristType.Iodine}, new int[] {17, 10}));
 		GristRegistry.addGristConversion(new ItemStack(reverseCake), new GristSet(new GristType[] {GristType.Amber, GristType.Chalk, GristType.Iodine}, new int[] {10, 24, 11}));
 		GristRegistry.addGristConversion(cruxtruderLid, new GristSet(GristType.Build, 8));
-		GristRegistry.addGristConversion((new ItemStack(blender)), new GristSet(new GristType[] {GristType.Artifact, GristType.Zillium}, new int[] {100000, 1}));
-		GristRegistry.addGristConversion(new ItemStack(shopPoster, 1, 0), new GristSet(new GristType[] {GristType.Build, GristType.Cobalt, GristType.Shale}, new int[] {8, 2, 2}));
-		GristRegistry.addGristConversion(new ItemStack(shopPoster, 1, 1), new GristSet(new GristType[] {GristType.Build, GristType.Iodine}, new int[] {9, 3}));
-		GristRegistry.addGristConversion(new ItemStack(shopPoster, 1, 2), new GristSet(new GristType[] {GristType.Build, GristType.Chalk, GristType.Caulk}, new int[] {8, 2, 2}));
-		GristRegistry.addGristConversion(new ItemStack(shopPoster, 1, 3), new GristSet(new GristType[] {GristType.Build, GristType.Rust, GristType.Amber}, new int[] {7, 3, 2}));
-		GristRegistry.addGristConversion(new ItemStack(shopPoster, 1, 4), new GristSet(new GristType[] {GristType.Build, GristType.Iodine, GristType.Chalk}, new int[] {9, 2, 1}));
-		
 		
 		//add Designix and Lathe combinations
 		
@@ -722,7 +715,6 @@ public class AlchemyRecipes
 		CombinationRegistry.addCombination(new ItemStack(clawHammer), new ItemStack(chessboard), MODE_AND, false, true, new ItemStack(regiHammer));
 		CombinationRegistry.addCombination(new ItemStack(blacksmithHammer), new ItemStack(Items.CLOCK), MODE_OR, false, false, new ItemStack(fearNoAnvil));
 		CombinationRegistry.addCombination(new ItemStack(sledgeHammer), new ItemStack(Items.BOOK), MODE_AND, false, false, new ItemStack(telescopicSassacrusher));
-		//CombinationRegistry.addCombination(new ItemStack(zillyhooHammer), new ItemStack(fluoriteOctet), MODE_AND, false, false, new ItemStack(popamaticVrillyhoo));
 		
 		//canes
 		CombinationRegistry.addCombination(new ItemStack(cane), new ItemStack(Items.IRON_SWORD), MODE_OR, false, false, new ItemStack(spearCane));
@@ -750,8 +742,6 @@ public class AlchemyRecipes
 		
 		CombinationRegistry.addCombination(new ItemStack(crockerSpork), new ItemStack(captchaCard), MODE_OR, false, true, new ItemStack(crockerMachine, 1, 0));
 		CombinationRegistry.addCombination(new ItemStack(Items.ENDER_PEARL), new ItemStack(Blocks.IRON_BLOCK), MODE_AND, false, false, new ItemStack(transportalizer));
-		CombinationRegistry.addCombination(new ItemStack(captchaCard), new ItemStack(MinestuckBlocks.blockComputerOff), MODE_AND, false, false, new ItemStack(captcharoidCamera));
-		CombinationRegistry.addCombination(new ItemStack(captchaCard), new ItemStack(Items.ENDER_EYE), MODE_OR, false, false, new ItemStack(captcharoidCamera));
 		
 		CombinationRegistry.addCombination(new ItemStack(modusCard, 1, 0), new ItemStack(modusCard, 1, 1), MODE_AND, true, true, new ItemStack(modusCard, 1, 2));
 		CombinationRegistry.addCombination("stickWood", modusCard, OreDictionary.WILDCARD_VALUE, MODE_OR, new ItemStack(modusCard, 1, 3));
@@ -776,9 +766,6 @@ public class AlchemyRecipes
 		CombinationRegistry.addCombination(new ItemStack(Blocks.LOG), new ItemStack(glowingMushroom), MODE_OR, false, true, new ItemStack(glowingLog));
 		CombinationRegistry.addCombination(new ItemStack(Blocks.LOG2), new ItemStack(glowingMushroom), MODE_OR, false, true, new ItemStack(glowingLog));
 		CombinationRegistry.addCombination(new ItemStack(Blocks.PLANKS), new ItemStack(glowingMushroom), MODE_OR, false, true, new ItemStack(glowingPlanks));
-		CombinationRegistry.addCombination(new ItemStack(Blocks.STONE), new ItemStack(Blocks.RED_FLOWER), MODE_OR, new ItemStack(petrifiedPoppy));
-		CombinationRegistry.addCombination(new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.RED_FLOWER), MODE_OR, new ItemStack(petrifiedPoppy));
-		CombinationRegistry.addCombination(new ItemStack(Blocks.COBBLESTONE), new ItemStack(Blocks.RED_FLOWER), MODE_OR, new ItemStack(petrifiedPoppy));
 		CombinationRegistry.addCombination(new ItemStack(Items.SUGAR), new ItemStack(Items.WHEAT_SEEDS), MODE_AND, new ItemStack(candy, 1, 0));
 		
 		if(oreMultiplier != 0)
@@ -847,6 +834,10 @@ public class AlchemyRecipes
 		CombinationRegistry.addCombination(new ItemStack(Blocks.LOG, 1, 0), new ItemStack(Blocks.VINE), MODE_AND, new ItemStack(log, 1, 0));
 		CombinationRegistry.addCombination(new ItemStack(log, 1, 0), new ItemStack(Blocks.YELLOW_FLOWER), MODE_OR, true, false, new ItemStack(log, 1, 1));
 		CombinationRegistry.addCombination(new ItemStack(log, 1, 0), new ItemStack(Blocks.RED_FLOWER), MODE_OR, true, false, new ItemStack(log, 1, 1));
+		CombinationRegistry.addCombination(new ItemStack(Blocks.MOSSY_COBBLESTONE, 1, 0), new ItemStack(Blocks.YELLOW_FLOWER), MODE_OR, true, false, new ItemStack(floweryMossStone));
+		CombinationRegistry.addCombination(new ItemStack(Blocks.MOSSY_COBBLESTONE, 1, 0), new ItemStack(Blocks.RED_FLOWER), MODE_OR, true, false, new ItemStack(floweryMossStone));
+		CombinationRegistry.addCombination(new ItemStack(Blocks.STONEBRICK, 1, BlockStoneBrick.MOSSY_META), new ItemStack(Blocks.YELLOW_FLOWER), MODE_OR, true, false, new ItemStack(floweryMossBrick));
+		CombinationRegistry.addCombination(new ItemStack(Blocks.STONEBRICK, 1, BlockStoneBrick.MOSSY_META), new ItemStack(Blocks.RED_FLOWER), MODE_OR, true, false, new ItemStack(floweryMossBrick));
 		CombinationRegistry.addCombination("plankWood", new ItemStack(Blocks.NETHERRACK), false, MODE_OR, new ItemStack(treatedPlanks));
 		CombinationRegistry.addCombination(new ItemStack(Items.WOODEN_SWORD), new ItemStack(Blocks.CACTUS), MODE_OR, false, true, new ItemStack(woodenCactus));
 		CombinationRegistry.addCombination(new ItemStack(Blocks.PLANKS), new ItemStack(Blocks.CACTUS), MODE_OR, false, true, new ItemStack(woodenCactus));
@@ -1030,12 +1021,6 @@ public class AlchemyRecipes
 	@Nonnull
 	public static ItemStack getDecodedItem(ItemStack card)
 	{
-		return getDecodedItem(card, false);
-	}
-	
-	@Nonnull
-	public static ItemStack getDecodedItem(ItemStack card, boolean ignoreGhost)
-	{
 		if (!hasDecodedItem(card))
 		{
 			return ItemStack.EMPTY;
@@ -1048,10 +1033,7 @@ public class AlchemyRecipes
 		
 		if(tag.hasKey("contentTags"))
 			newItem.setTagCompound(tag.getCompoundTag("contentTags"));
-		
-		if(ignoreGhost && tag.hasKey("contentSize") && tag.getInteger("contentSize") <= 0)
-			newItem.setCount(0);
-		else if(tag.hasKey("contentSize") && tag.getInteger("contentSize") >= 1)
+		if(tag.hasKey("contentSize"))
 			newItem.setCount(tag.getInteger("contentSize"));
 		
 		return newItem;
@@ -1104,29 +1086,6 @@ public class AlchemyRecipes
 	}
 	
 	@Nonnull
-	public static ItemStack createEncodedItem(ItemStack itemIn, ItemStack itemOut)
-	{
-		NBTTagCompound nbt = null;
-		if(!itemIn.isEmpty())
-		{
-			nbt = new NBTTagCompound();
-			nbt.setString("contentID", Item.REGISTRY.getNameForObject(itemIn.getItem()).toString());
-			nbt.setInteger("contentMeta", itemIn.getItemDamage());
-		}
-		ItemStack stack = itemOut;
-		
-		
-		stack.setTagCompound(nbt);
-		return stack;
-	}
-	
-	@Nonnull
-	public static ItemStack createEncodedItem(ItemStack itemIn, Item itemOut)
-	{
-		return createEncodedItem(itemIn, new ItemStack(itemOut));
-	}
-	
-	@Nonnull
 	public static ItemStack createCard(ItemStack item, boolean punched)
 	{
 		ItemStack stack = createEncodedItem(item, true);
@@ -1139,46 +1098,6 @@ public class AlchemyRecipes
 				stack.getTagCompound().setTag("contentTags", item.getTagCompound());
 			stack.getTagCompound().setInteger("contentSize", item.getCount());
 		}
-		
-		return stack;
-	}
-	
-	@Nonnull
-	public static ItemStack createGhostCard(ItemStack item)
-	{
-		ItemStack stack = createEncodedItem(item, true);
-		if(!stack.hasTagCompound())
-			stack.setTagCompound(new NBTTagCompound());
-		stack.getTagCompound().setBoolean("punched", false);
-			if(item.hasTagCompound())
-				stack.getTagCompound().setTag("contentTags", item.getTagCompound());
-			stack.getTagCompound().setInteger("contentSize", 0);
-		return stack;
-	}
-	
-	public static ItemStack changeEncodeSize(ItemStack stack, int size)
-	{
-		
-		if(!stack.hasTagCompound())
-			stack.setTagCompound(new NBTTagCompound());
-		
-			stack.getTagCompound().setInteger("contentSize", size);
-		
-		
-		return stack;
-	}
-	
-	public static ItemStack createShunt(ItemStack item)
-	{
-		ItemStack stack = createEncodedItem(item, shunt);
-		if(!stack.hasTagCompound())
-			stack.setTagCompound(new NBTTagCompound());
-		stack.getTagCompound().setBoolean("punched", true);
-		
-			if(item.hasTagCompound())
-				stack.getTagCompound().setTag("contentTags", item.getTagCompound());
-			stack.getTagCompound().setInteger("contentSize", item.getCount());
-		
 		
 		return stack;
 	}

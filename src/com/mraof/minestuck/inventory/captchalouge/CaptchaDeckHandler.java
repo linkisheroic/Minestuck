@@ -127,7 +127,7 @@ public class CaptchaDeckHandler
 	public static void useItem(EntityPlayerMP player)
 	{
 		if(!(player.openContainer instanceof ContainerCaptchaDeck))
-			 return;
+			return;
 		ContainerCaptchaDeck container = (ContainerCaptchaDeck) player.openContainer;
 		if(container.inventory.getStackInSlot(0).isEmpty())
 			return;
@@ -174,9 +174,7 @@ public class CaptchaDeckHandler
 		else if(item.getItem().equals(MinestuckItems.captchaCard) && !AlchemyRecipes.isPunchedCard(item)
 				&& modus != null)
 		{
-			ItemStack content = AlchemyRecipes.getDecodedItem(item, true);
-			
-			System.out.println(content);
+			ItemStack content = AlchemyRecipes.getDecodedItem(item);
 			int failed = 0;
 			for(int i = 0; i < item.getCount(); i++)
 				if(!modus.increaseSize())
@@ -221,7 +219,7 @@ public class CaptchaDeckHandler
 			if(stack.getItem() == MinestuckItems.captchaCard && AlchemyRecipes.hasDecodedItem(stack)
 					&& !AlchemyRecipes.isPunchedCard(stack))
 			{
-				ItemStack newStack = AlchemyRecipes.getDecodedItem(stack, true);
+				ItemStack newStack = AlchemyRecipes.getDecodedItem(stack);
 				if(!newStack.isEmpty())
 				{
 					card1 = true;

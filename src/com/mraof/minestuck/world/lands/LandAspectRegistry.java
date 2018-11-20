@@ -40,10 +40,10 @@ public class LandAspectRegistry
 		registerLandAspect(new LandAspectForest());
 		registerLandAspect(new LandAspectRock());
 		registerLandAspect(new LandAspectWood());
-		//registerLandAspect(new LandAspectRain());
-		//registerLandAspect(new LandAspectRainbow());
-		//registerLandAspect(new LandAspectFlora());
-		//registerLandAspect(new LandAspectEnd());
+		registerLandAspect(new LandAspectRain());
+		registerLandAspect(new LandAspectRainbow());
+		registerLandAspect(new LandAspectFlora());
+		registerLandAspect(new LandAspectEnd());
 		
 		registerLandAspect(new LandAspectWind(), EnumAspect.BREATH);
 		registerLandAspect(new LandAspectLight(), EnumAspect.LIGHT);
@@ -53,14 +53,13 @@ public class LandAspectRegistry
 		registerLandAspect(new LandAspectPulse(), EnumAspect.BLOOD);
 		registerLandAspect(new LandAspectThought(), EnumAspect.MIND);
 		registerLandAspect(new LandAspectBuckets(), EnumAspect.SPACE);	//buckets -> containers -> space, right?
-		registerLandAspect(new LandAspectFrogs(), EnumAspect.SPACE);
 		registerLandAspect(new LandAspectCake(), EnumAspect.HEART);
 		registerLandAspect(new LandAspectRabbits(), EnumAspect.LIFE);
 		registerLandAspect(new LandAspectMonsters(), EnumAspect.RAGE);
 		registerLandAspect(new LandAspectTowers(), EnumAspect.HOPE);
 		
 		landNames2.put(nullAspect.getPrimaryName(), nullAspect);
-		//landNames2.put(frogAspect.getPrimaryName(), frogAspect);
+		landNames2.put(frogAspect.getPrimaryName(), frogAspect);
 	}
 	
 	public LandAspectRegistry(long seed)
