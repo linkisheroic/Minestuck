@@ -27,11 +27,7 @@ public class ItemRandomWeapon extends ItemWeapon
         {
             source = DamageSource.causeMobDamage(player);
         }
-        
-        float rng = (float) (player.getRNG().nextInt(7)+1) * (player.getRNG().nextInt(7)+1);
-        target.attackEntityFrom(source, rng );
-        
-        
+        target.attackEntityFrom(source, (float) (player.getRNG().nextInt(6)+1) * (player.getRNG().nextInt(6)+1) );
         return super.hitEntity(itemStack, target, player);
     }
 }

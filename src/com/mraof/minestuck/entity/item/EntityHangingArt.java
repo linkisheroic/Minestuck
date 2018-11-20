@@ -6,12 +6,10 @@ import java.util.Set;
 import com.google.common.collect.Lists;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -24,9 +22,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public abstract class EntityHangingArt<T extends EntityHangingArt.IArt> extends EntityHanging implements IEntityAdditionalSpawnData
 {
 	public T art;
-	private static boolean random = true;
-	
-	private int meta = 1;
 	
 	public EntityHangingArt(World worldIn)
 	{
@@ -48,34 +43,8 @@ public abstract class EntityHangingArt<T extends EntityHangingArt.IArt> extends 
 		}
 		
 		if(!artList.isEmpty())
-				this.art = artList.get(this.rand.nextInt(artList.size()));
-		
-		
-		this.updateFacingWithBoundingBox(facing);
-	}
-
-	public EntityHangingArt(World worldIn, BlockPos pos, EnumFacing facing, ItemStack stack, int meta, boolean random)
-	{
-		super(worldIn, pos);
-		List<T> artList = Lists.<T>newArrayList();
-		
-		setRandom(random);
-		
-		for(T art : getArtSet())
 		{
-			this.art = art;
-			this.updateFacingWithBoundingBox(facing);
-			
-			if(this.onValidSurface())
-				artList.add(art);
-		}
-		
-		if(!artList.isEmpty())
-		{
-			if(random)
-				this.art = artList.get(this.rand.nextInt(artList.size()));
-			else
-				this.art = artList.get(meta);
+			this.art = artList.get(this.rand.nextInt(artList.size()));
 		}
 		
 		this.updateFacingWithBoundingBox(facing);
@@ -149,11 +118,9 @@ public abstract class EntityHangingArt<T extends EntityHangingArt.IArt> extends 
 				if(entityplayer.capabilities.isCreativeMode)
 					return;
 			}
-			//TODO
 			
-				this.entityDropItem(this.getStackDropped(), 0.0F);
+			this.entityDropItem(this.getStackDropped(), 0.0F);
 		}
-			
 	}
 	
 	@Override
@@ -215,12 +182,6 @@ public abstract class EntityHangingArt<T extends EntityHangingArt.IArt> extends 
 		this.updateFacingWithBoundingBox(facing);
 	}
 	
-	public ItemStack getStackDroppedMeta(int meta)
-	{
-		Item stack = getStackDropped().getItem();
-		return new ItemStack(stack, 1, meta);
-	}
-	
 	public abstract Set<T> getArtSet();
 	
 	public abstract T getDefault();
@@ -240,13 +201,4 @@ public abstract class EntityHangingArt<T extends EntityHangingArt.IArt> extends 
 		public int getOffsetY();
 	}
 	
-	public static void setRandom(boolean rand)
-	{
-		random = rand;
-	}
-	
-	public boolean getRandom()
-	{
-		return random;
-	}
 }
