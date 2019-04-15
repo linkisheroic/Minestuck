@@ -25,8 +25,10 @@ public class GuiColorSelector extends GuiScreen
 	private static final ResourceLocation guiBackground = new ResourceLocation("minestuck", "textures/gui/color_selector.png");
 	private static final int guiWidth = 176, guiHeight = 157;
 	private int selectedColor;
+	private int previewColor = this.hexStringParser("f00000");
 	private boolean firstTime;
-	private GuiTextField destinationTextField;
+	private GuiColoredTextField destinationTextField;
+	
 	
 	public GuiColorSelector(Minecraft minecraft, boolean firstTime)
 	{
@@ -39,10 +41,10 @@ public class GuiColorSelector extends GuiScreen
 	public void initGui()
 	{
 		int yOffset = (this.height - 10) - (guiHeight - 10);
-		this.destinationTextField = new GuiTextField(0, this.fontRenderer, (width - guiWidth)/2 + 31, (height - guiHeight)/2 + 130, 45, 20);
+		this.destinationTextField = new GuiColoredTextField(0, this.fontRenderer, (width - guiWidth)/2 + 31, (height - guiHeight)/2 + 130, 45, 20, previewColor);
 		this.destinationTextField.setMaxStringLength(6);
 		this.destinationTextField.setFocused(false);
-		this.destinationTextField.setText(String.valueOf(ColorCollector.getColor(selectedColor)));
+		this.destinationTextField.setText(Integer.toHexString(previewColor));
 		
 		GuiButton button = new GuiButton(0, (width + guiWidth)/2 - 84, (height - guiHeight)/2 + 130, 60, 20, "Choose");
 		buttonList.add(button);
@@ -85,7 +87,10 @@ public class GuiColorSelector extends GuiScreen
 				drawRect(xOffset + x, yOffset + y, xOffset + x + 32, yOffset + y + 16, color);
 			}
 		
+		
+		//draw text entry box
 		this.destinationTextField.drawTextBox();
+	
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		
 		if(selectedColor != -1)
@@ -126,6 +131,8 @@ public class GuiColorSelector extends GuiScreen
 					{
 						int index = y*4 + x;
 						selectedColor = index != selectedColor ? index : -1;
+						this.destinationTextField.setBackgroundColor(ColorCollector.getColor(selectedColor));
+						this.destinationTextField.setText(Integer.toHexString(ColorCollector.getColor((selectedColor))));
 						return;
 					}
 				}
@@ -138,20 +145,23 @@ public class GuiColorSelector extends GuiScreen
 	{
 		super.keyTyped(character, key);
 		this.destinationTextField.textboxKeyTyped(character, key);
-		//this.doneBtn.enabled = this.commandTextField.getText().trim().length() > 0;
-
-		//this.actionPerformed(this.doneBtn);
+		
+		String text = destinationTextField.getText();
+		
+		if(this.isValidHexString(text)) {
+			this.previewColor = this.hexStringParser(text);
+			this.destinationTextField.setBackgroundColor(hexStringParser(text));
+		}
+		
 	}
 	
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		/* This is for when the player inputs text in the field and then hits the button. Needs functionality and edits to MinestuckPacket, SelectionPacket.
-		if(button.id == 0 && this.destinationTextField.getText().length() == 6)
+		if(test for valid hex here)
 		{
-			MinestuckChannelHandler.sendToServer(MinestuckPacket.makePacket(MinestuckPacket.Type.SELECTION, SelectionPacket.COLOR, this.selectedColor));
-			ColorCollector.playerColor = selectedColor;
-			this.mc.displayGuiScreen(null);
+			MinestuckChannelHandler.sendToServer(MinestuckPacket.makePacket(MinestuckPacket.Type.SELECTION, SelectionPacket.COLOR, this.previewcolor));
 		}
 		*/
 		
@@ -171,6 +181,44 @@ public class GuiColorSelector extends GuiScreen
 			else message = new TextComponentTranslation("message.selectColor");
 			this.mc.player.sendMessage(new TextComponentString("[Minestuck] ").appendSibling(message));
 		}
+	}
+	
+	//Tests a given string as a valid hex code.
+	public boolean isValidHexString(String input) {
+		return input.matches("-?[0-9a-fA-F]+");
+	}
+	
+	//Parses a string into a integer to be stored and used.
+	public static int hexStringParser(String in)
+	{
+	    int out = 0;
+	    for(int i=0; i<in.length(); i++)
+	    {
+	        out *= 16;    //Compiler should optimize to sll, left as multiplication for readability
+	        int curr = hexCharParser(in.charAt(i));
+	        if(curr == -1)
+	            return -1;
+	        out += curr;
+	    }
+	    return out;
+	}
+	
+	public static int hexCharParser(char x)
+	{
+	    int out = x - '0';
+	    if(out < 0 || out > 9)
+	    {
+	        out = x - 'A' + 10;
+	        if(out < 10 || out > 15)
+	        {
+	            out = x - 'a' + 10;
+	            if(out < 10 || out > 15)
+	            {
+	                out = -1;
+	            }
+	        }
+	    }
+	    return out;
 	}
 	
 }

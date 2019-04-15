@@ -221,7 +221,7 @@
                     "conditions": [
                         {
                             "condition": "minestuck:land_aspect",
-                            "land_aspect": [ "wood", "forest", "flora" ]
+                            "land_aspect": [ "wood", "forest" ]
                         }
                     ]
                 },
@@ -322,7 +322,7 @@
                     "conditions": [
                         {
                             "condition": "minestuck:land_aspect",
-                            "land_aspect": [ "rock", "rainbow" ]
+                            "land_aspect": "rock"
                         }
                     ]
                 },
@@ -373,7 +373,7 @@
                     "conditions": [
                         {
                             "condition": "minestuck:land_aspect",
-                            "land_aspect": [ "heat", "flora" ]
+                            "land_aspect": "heat"
                         }
                     ]
                 },
@@ -502,7 +502,7 @@
                     "conditions": [
                         {
                             "condition": "minestuck:land_aspect",
-                            "land_aspect": [ "frost", "flora" ]
+                            "land_aspect": "frost"
                         }
                     ]
                 },
@@ -625,97 +625,6 @@
                         {
                             "condition": "minestuck:land_aspect",
                             "land_aspect": "sandstone"
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "minecraft:elytra",
-                    "weight": 3,
-                    "conditions": [
-                        {
-                            "condition": "minestuck:land_aspect",
-                            "land_aspect": "end"
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "minecraft:obsidian",
-                    "weight": 10,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 5,
-                                "max": 10
-                            }
-                        }
-                    ],
-                    "conditions": [
-                        {
-                            "condition": "minestuck:land_aspect",
-                            "land_aspect": "end"
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "minecraft:dragon_breath",
-                    "weight": 8,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 2,
-                                "max": 5
-                            }
-                        }
-                    ],
-                    "conditions": [
-                        {
-                            "condition": "minestuck:land_aspect",
-                            "land_aspect": "end"
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "minecraft:egg",
-                    "weight": 3,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 3
-                            }
-                        },
-		    ],
-                    "conditions": [
-                        {
-                            "condition": "minestuck:land_aspect",
-                            "land_aspect": "rainbow"
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "minecraft:paper",
-                    "weight": 10,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 5,
-                                "max": 10
-                            }
-                        }
-                    ],
-                    "conditions": [
-                        {
-                            "condition": "minestuck:land_aspect",
-                            "land_aspect": "rainbow"
                         }
                     ]
                 },
@@ -992,7 +901,7 @@
                     "conditions": [
                         {
                             "condition": "minestuck:land_aspect",
-                            "land_aspect": "wood"
+                            "land_aspect": [ "wood", "taiga" ]
                         }
                     ]
                 },
@@ -1522,7 +1431,7 @@
                     "conditions": [
                         {
                             "condition": "minestuck:land_aspect",
-                            "land_aspect": "sand",
+                            "land_aspect": [ "sand", "lush_deserts" ],
                             "subtypes": false
                         }
                     ]
@@ -1574,7 +1483,7 @@
                     "conditions": [
                         {
                             "condition": "minestuck:land_aspect",
-                            "land_aspect": [ "sand", "sandstone" ],
+                            "land_aspect": [ "sand", "lush_deserts", "sandstone" ],
                             "subtypes": false
                         }
                     ]
